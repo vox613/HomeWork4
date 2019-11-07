@@ -21,12 +21,10 @@ public class NewMap<K, V> implements Map<K, V> {
         V pastValue;
         if (key == null) {
             pastValue = (V) bucketMass[0].add(new Node<>(key, value));
-            //this.newEntrySet = this.
             entrySet();
             return pastValue;
         } else {
             pastValue = (V) bucketMass[getIndex(key)].add(new Node<>(key, value));
-            //this.newEntrySet = this.
             entrySet();
             return pastValue;
         }

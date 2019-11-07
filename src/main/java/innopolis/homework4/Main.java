@@ -64,8 +64,6 @@ public class Main {
     }
 
 
-
-
     static void cleanup(Object obj, Set<String> fieldsToCleanup, Set<String> fieldsToOutput) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
 
         if (fieldsToCleanup.isEmpty() && fieldsToOutput.isEmpty()) {
@@ -101,45 +99,6 @@ public class Main {
                 for (Field field : fields) {
                     String fieldType = field.getType().getName();
                     field.setAccessible(true);
-                    if (fieldsToCleanup.contains(field.getName())) {
-                        switch (fieldType) {
-                            case ("int"): {
-                                field.set(obj, 0);
-                                break;
-                            }
-                            case ("long"): {
-                                field.set(obj, 0L);
-                                break;
-                            }
-                            case ("short"): {
-                                field.set(obj, (short) 0);
-                                break;
-                            }
-                            case ("byte"): {
-                                field.set(obj, (byte) 0);
-                                break;
-                            }
-                            case ("float"): {
-                                field.set(obj, 0.0f);
-                                break;
-                            }
-                            case ("double"): {
-                                field.set(obj, 0.0d);
-                                break;
-                            }
-                            case ("char"): {
-                                field.set(obj, '\u0000');
-                                break;
-                            }
-                            case ("boolean"): {
-                                field.set(obj, false);
-                                break;
-                            }
-                            default: {
-                                field.set(obj, null);
-                            }
-                        }
-                    }
                     if (fieldsToOutput.contains(field.getName())) {
                         switch (fieldType) {
                             case ("int"): {
@@ -180,6 +139,45 @@ public class Main {
                                 } else {
                                     System.out.println(field.get(obj).toString());
                                 }
+                            }
+                        }
+                    }
+                    if (fieldsToCleanup.contains(field.getName())) {
+                        switch (fieldType) {
+                            case ("int"): {
+                                field.set(obj, 0);
+                                break;
+                            }
+                            case ("long"): {
+                                field.set(obj, 0L);
+                                break;
+                            }
+                            case ("short"): {
+                                field.set(obj, (short) 0);
+                                break;
+                            }
+                            case ("byte"): {
+                                field.set(obj, (byte) 0);
+                                break;
+                            }
+                            case ("float"): {
+                                field.set(obj, 0.0f);
+                                break;
+                            }
+                            case ("double"): {
+                                field.set(obj, 0.0d);
+                                break;
+                            }
+                            case ("char"): {
+                                field.set(obj, '\u0000');
+                                break;
+                            }
+                            case ("boolean"): {
+                                field.set(obj, false);
+                                break;
+                            }
+                            default: {
+                                field.set(obj, null);
                             }
                         }
                     }

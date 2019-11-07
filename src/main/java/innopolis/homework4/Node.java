@@ -8,15 +8,6 @@ public class Node<K, V> implements Map.Entry<K, V> {
     private int keyHashCode;
     private Node linkToNextNode;
 
-    private int     intValue = 5;
-    private long    longValue = 10;
-    private short   shortValue = 15;
-    private double  doubleValue = 5.5;
-    private float   floatValue = 5.8f;
-    private byte    byteValue = 125;
-    private char    charValue = 'h';
-    private boolean booleanValue = true;
-
     Node(K key, V value) {
         this.key = key;
         this.value = value;
@@ -28,7 +19,9 @@ public class Node<K, V> implements Map.Entry<K, V> {
         }
     }
 
-    public String toString() { return "[" + key + ":" + value + "]"; }
+    public String toString() {
+        return "[" + key + ":" + value + "]";
+    }
 
 
     public V setValue(V newValue) {
