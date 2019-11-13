@@ -1,5 +1,7 @@
 package innopolis.homework4;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class Node<K, V> implements Map.Entry<K, V> {
@@ -27,6 +29,8 @@ public class Node<K, V> implements Map.Entry<K, V> {
     public V setValue(V newValue) {
         V oldValue = value;
         value = newValue;
+
+
         return oldValue;
     }
 

@@ -33,7 +33,7 @@ public class Main {
         System.out.println(newMap.toString());
 
 
-        Node newNode = new Node("5", "500");
+        Animal animal = new Animal("Dog");
 
         Set<String> fieldsToCleanup_1 = new HashSet<>() {{
             add("intValue");
@@ -44,7 +44,6 @@ public class Main {
             add("byteValue");
             add("charValue");
             add("booleanValue");
-            add("linkToNextNode");
         }};
 
 
@@ -57,14 +56,33 @@ public class Main {
             add("byteValue");
             add("charValue");
             add("booleanValue");
-            add("linkToNextNode");
         }};
 
-        cleanup(newNode, fieldsToCleanup_1, fieldsToOutput_1);
+        cleanup(animal, fieldsToCleanup_1, fieldsToOutput_1);
     }
 
+    /**The cleanup method uses the Reflection API and has the following functionality:
+     1) When passing as an obj an instance of a class that implements the Map interface, a pair of values is
+        searched for and deleted by the key specified in the fieldsToCleanup set. The value of the keys specified
+        in fieldsToOutput are displayed in the console.
+     2) When passing any other object as obj, the fields specified in the fieldsToCleanup set are set to the initial
+        values​and the values ​​of the variables with the names specified in the fieldsToOutput set are output
+        to the console.
+     If the object does not have the field specified in the fieldsToCleanup or fieldsToOutput set, an
+     IllegalArgumentException is thrown, the original object remains unchanged.
 
-    static void cleanup(Object obj, Set<String> fieldsToCleanup, Set<String> fieldsToOutput) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+     * @param obj                           -   object with which work is carried out
+     * @param fieldsToCleanup               -   set of field / key names for deleting / setting default values
+     * @param fieldsToOutput                -   a set of field / key names for displaying their values to the console
+     * @throws NoSuchMethodException        -   thrown when trying to access a non-existent method when calling
+     *                                          clazz.getMethod ("methodName")
+     * @throws InvocationTargetException    -   thrown when catches exceptions from invoke() methods called;
+     * @throws IllegalAccessException       -   thrown when there are no fields in the object specified in the sets
+     *                                          for deletion or display
+     */
+
+    static void cleanup(Object obj, Set<String> fieldsToCleanup, Set<String> fieldsToOutput)
+            throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
 
         if (fieldsToCleanup.isEmpty() && fieldsToOutput.isEmpty()) {
             return;
@@ -76,6 +94,12 @@ public class Main {
         for (Field field : fields) {
             fieldsList.add(field.getName());
         }
+
+        Method[] methods = clazz.getDeclaredMethods();
+        for (Method method : methods) {
+            System.out.println("> " + method.getName());
+        }
+
 
         if (obj instanceof Map) {
             Method mKeySet = clazz.getMethod("keySet");

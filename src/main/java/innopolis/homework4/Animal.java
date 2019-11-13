@@ -1,5 +1,8 @@
 package innopolis.homework4;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Animal {
 
     private int intValue = 5;
@@ -12,36 +15,37 @@ public class Animal {
     private boolean booleanValue = true;
     private final String name;
 
-    public Animal(String name) {
+    Animal(String name) {
         this.name = name;
     }
 
 
-    public int getIntValue() {
+
+    int getIntValue() {
         return intValue;
     }
 
-    public long getLongValue() {
+    long getLongValue() {
         return longValue;
     }
 
-    public short getShortValue() {
+    short getShortValue() {
         return shortValue;
     }
 
-    public double getDoubleValue() {
+    double getDoubleValue() {
         return doubleValue;
     }
 
-    public float getFloatValue() {
+    float getFloatValue() {
         return floatValue;
     }
 
-    public byte getByteValue() {
+    byte getByteValue() {
         return byteValue;
     }
 
-    public char getCharValue() {
+    char getCharValue() {
         return charValue;
     }
 
@@ -49,7 +53,7 @@ public class Animal {
         return booleanValue;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 }
